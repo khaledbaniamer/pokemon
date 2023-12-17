@@ -1,0 +1,46 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Pokemon {
+  id                Int       @id @default(autoincrement())
+  name              String 
+  pokedexNumber     String
+  imgName           String
+  generation        Int
+  evolutionStage    String?
+  evolved           Int       @default(0)
+  familyID          Int?
+  crossGen          Int       @default(0)
+  type1             String
+  type2             String?
+  weather1          String
+  weather2          String?
+  statTotal         Int
+  atk               Int
+  def               Int
+  sta               Int
+  legendary         Int       @default(0)
+  aquireable        Int       @default(0)
+  spawns            Int       @default(0)
+  regional          Int       @default(0)
+  raidable          Int       @default(0)
+  hatchable         Int       @default(0)
+  shiny             Int       @default(0)
+  nest              Int       @default(0)
+  new               Int       @default(0)
+  notGettable       Int       @default(0)
+  futureEvolve      Int       @default(0)
+  CP40              Int
+  CP39              Int
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+}
