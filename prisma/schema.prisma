@@ -39,8 +39,8 @@ model Pokemon {
   new               Int       @default(0)
   notGettable       Int       @default(0)
   futureEvolve      Int       @default(0)
-  CP40              Int
-  CP39              Int
+  cp40              Int
+  cp39              Int
   createdAt         DateTime  @default(now())
   updatedAt         DateTime  @updatedAt
 }
