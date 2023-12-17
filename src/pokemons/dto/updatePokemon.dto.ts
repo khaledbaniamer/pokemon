@@ -5,7 +5,7 @@ export class UpdatePokemonDto {
   @IsString()
   name: string;
 
-  @IsInt()
+  @IsString()
   pokedexNumber: string;
 
   @IsString()
