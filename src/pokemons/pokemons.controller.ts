@@ -7,12 +7,16 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  UploadedFile,
+  UseInterceptors,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
 import { PokemonsService } from './pokemons.service';
 import { CreatePokemonDto } from './dto/createPokemon.dto';
 import { UpdatePokemonDto } from './dto/updatePokemon.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import xlsx from 'node-xlsx';
 
 @Controller('pokemons')
 export class PokemonsController {
@@ -48,11 +52,17 @@ export class PokemonsController {
     }
   }
   @Delete(':id')
-  async deletePokemon(@Param('id', ParseIntPipe) id: number){
+  async deletePokemon(@Param('id', ParseIntPipe) id: number) {
     try {
-      return this.pokemonService.deletePokemon(id)
-    } catch (error) {
-      
-    }
+      return this.pokemonService.deletePokemon(id);
+    } catch (error) {}
+  }
+
+  @Post('upload')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadFile(@UploadedFile() file: Express.Multer.File) {
+    // console.log(Readable.from(file.buffer));
+    const x= xlsx.parse(file.buffer);
+    this.pokemonService.bulkCreate(x)
   }
 }
