@@ -5,8 +5,8 @@ export class CreatePokemonDto {
   @IsString()
   name: string;
 
-  @IsString()
-  pokedexNumber: string;
+  @IsInt()
+  pokedexNumber: number;
 
   @IsString()
   imgName: string;

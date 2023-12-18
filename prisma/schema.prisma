@@ -13,7 +13,7 @@ datasource db {
 model Pokemon {
   id                Int       @id @default(autoincrement())
   name              String 
-  pokedexNumber     String
+  pokedexNumber     Int
   imgName           String
   generation        Int
   evolutionStage    String?
