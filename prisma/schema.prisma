@@ -18,7 +18,7 @@ model Pokemon {
   generation        Int
   evolutionStage    String?
   evolved           Int       @default(0)
-  familyID          Int?
+  familyId          Int?
   crossGen          Int       @default(0)
   type1             String
   type2             String?

@@ -1,16 +1,20 @@
 // pokemon.dto.ts
-import { IsInt, IsString, IsOptional } from 'class-validator';
+import { IsInt, IsString, IsOptional, IsNotEmpty } from 'class-validator';
 
 export class CreatePokemonDto {
+  @IsNotEmpty()
   @IsString()
   name: string;
 
+  @IsNotEmpty()
   @IsInt()
   pokedexNumber: number;
 
+  @IsNotEmpty()
   @IsString()
   imgName: string;
 
+  @IsNotEmpty()
   @IsInt()
   generation: number;
 
@@ -30,6 +34,7 @@ export class CreatePokemonDto {
   @IsOptional()
   crossGen?: number;
 
+  @IsNotEmpty()
   @IsString()
   type1: string;
 
@@ -37,6 +42,7 @@ export class CreatePokemonDto {
   @IsOptional()
   type2?: string;
 
+  @IsNotEmpty()
   @IsString()
   weather1: string;
 
@@ -44,15 +50,19 @@ export class CreatePokemonDto {
   @IsOptional()
   weather2?: string;
 
+  @IsNotEmpty()
   @IsInt()
   statTotal: number;
 
+  @IsNotEmpty()
   @IsInt()
   atk: number;
 
+  @IsNotEmpty()
   @IsInt()
   def: number;
 
+  @IsNotEmpty()
   @IsInt()
   sta: number;
 
