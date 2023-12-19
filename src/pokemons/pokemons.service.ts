@@ -2,14 +2,22 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/database/prisma.service';
 import { CreatePokemonDto } from './dto/createPokemon.dto';
 import { UpdatePokemonDto } from './dto/updatePokemon.dto';
-import { Pokemon } from '@prisma/client';
+import { Pokemon, Prisma } from '@prisma/client';
+import { FilterPokemonType } from './dto/filterPokemon.dto';
 
 @Injectable()
 export class PokemonsService {
   constructor(private prisma: PrismaService) {}
 
-  async findAllPokemons(): Promise<Pokemon[]> {
-    return this.prisma.pokemon.findMany();
+  async findAllPokemons(
+    page: number,
+    pageCount: number,
+    filter: FilterPokemonType,
+  ): Promise<Pokemon[]> {
+    const skip = (page - 1) * pageCount;
+    const take = pageCount;
+    const parsedFilterField = this.parseField(filter);
+    return this.prisma.pokemon.findMany({ where: filter, skip:skip, take:take });
   }
   async findPokemonsById(pokemonId: number): Promise<Pokemon> {
     return this.isPokemonExist(pokemonId);
@@ -89,5 +97,29 @@ export class PokemonsService {
         },
       );
     }
+  }
+
+  private parseField(filter: FilterPokemonType): FilterPokemonType {  // This function will parse from number string to number
+    if (!filter) return;
+    const fields: { name: string; type: string }[] = [];
+    let obj: FilterPokemonType = {...filter};
+
+    // get the fields (type and name ) from pokemon model  
+    Prisma.dmmf.datamodel.models.forEach((e) =>
+      e.fields.forEach((ele) => {
+        if (ele.name != 'id') fields.push({ name: ele.name, type: ele.type });
+      }),
+    );
+
+    // parse the field that have int type s
+    fields.forEach((element) => {
+      if (filter[element.name]){
+        if(element.type == "Int"){
+          obj = {...obj , [element.name]:Number(filter[element.name])}
+        }
+      }
+    });
+
+    return obj;
   }
 }

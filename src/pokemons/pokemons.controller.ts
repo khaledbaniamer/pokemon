@@ -7,6 +7,7 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  Query,
   UploadedFile,
   UseInterceptors,
   UsePipes,
@@ -17,14 +18,22 @@ import { CreatePokemonDto } from './dto/createPokemon.dto';
 import { UpdatePokemonDto } from './dto/updatePokemon.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import xlsx from 'node-xlsx';
+import { FilterPokemonDto } from './dto/filterPokemon.dto';
 
 @Controller('pokemons')
 export class PokemonsController {
   constructor(private readonly pokemonService: PokemonsService) {}
   @Get()
-  async getPokemons() {
+  // @UsePipes(ValidationPipe)
+  async getPokemons(@Query()
+    filter: FilterPokemonDto,
+  ) {
+    let { page, pageCount, ...query } = filter;
+    page = page ?? 1;
+    pageCount = pageCount ? Number(pageCount): 10;
     // console.log(this.pokemonService.findAllPokemons());
-    return this.pokemonService.findAllPokemons();
+    
+    return this.pokemonService.findAllPokemons(page , pageCount , query);
   }
   @Get(':id')
   async getPokemonsById(@Param('id', ParseIntPipe) id: number) {
@@ -62,7 +71,7 @@ export class PokemonsController {
   @UseInterceptors(FileInterceptor('file'))
   uploadFile(@UploadedFile() file: Express.Multer.File) {
     // console.log(Readable.from(file.buffer));
-    const x= xlsx.parse(file.buffer);
-    this.pokemonService.bulkCreate(x)
+    const x = xlsx.parse(file.buffer);
+    this.pokemonService.bulkCreate(x);
   }
 }
