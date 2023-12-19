@@ -4,19 +4,19 @@ import { IsInt, IsString, IsOptional } from 'class-validator';
 export class UpdatePokemonDto {
   @IsOptional()
   @IsString()
-  name: string;
+  name?: string;
 
   @IsOptional()
   @IsInt()
-  pokedexNumber: number;
+  pokedexNumber?: number;
 
   @IsOptional()
   @IsString()
-  imgName: string;
+  imgName?: string;
 
   @IsOptional()
   @IsInt()
-  generation: number;
+  generation?: number;
 
   @IsOptional()
   @IsString()
@@ -36,7 +36,7 @@ export class UpdatePokemonDto {
 
   @IsOptional()
   @IsString()
-  type1: string;
+  type1?: string;
 
   @IsString()
   @IsOptional()
@@ -44,7 +44,7 @@ export class UpdatePokemonDto {
 
   @IsOptional()
   @IsString()
-  weather1: string;
+  weather1?: string;
 
 
   @IsOptional()
@@ -53,19 +53,19 @@ export class UpdatePokemonDto {
 
   @IsOptional()
   @IsInt()
-  statTotal: number;
+  statTotal?: number;
 
   @IsOptional()
   @IsInt()
-  atk: number;
+  atk?: number;
 
   @IsOptional()
   @IsInt()
-  def: number;
+  def?: number;
 
   @IsOptional()
   @IsInt()
-  sta: number;
+  sta?: number;
 
   @IsOptional()
   @IsInt()
@@ -113,9 +113,9 @@ export class UpdatePokemonDto {
 
   @IsOptional()
   @IsInt()
-  cp40: number;
+  cp40?: number;
 
   @IsOptional()
   @IsInt()
-  cp39: number;
+  cp39?: number;
 }
