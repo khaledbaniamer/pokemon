@@ -2,34 +2,39 @@
 import { IsInt, IsString, IsOptional } from 'class-validator';
 
 export class UpdatePokemonDto {
+  @IsOptional()
   @IsString()
   name: string;
 
+  @IsOptional()
   @IsInt()
   pokedexNumber: number;
 
+  @IsOptional()
   @IsString()
   imgName: string;
 
+  @IsOptional()
   @IsInt()
   generation: number;
 
-  @IsString()
   @IsOptional()
+  @IsString()
   evolutionStage?: string;
 
-  @IsInt()
   @IsOptional()
+  @IsInt()
   evolved?: number;
 
-  @IsInt()
   @IsOptional()
+  @IsInt()
   familyId?: number;
 
-  @IsInt()
   @IsOptional()
+  @IsInt()
   crossGen?: number;
 
+  @IsOptional()
   @IsString()
   type1: string;
 
@@ -37,72 +42,80 @@ export class UpdatePokemonDto {
   @IsOptional()
   type2?: string;
 
+  @IsOptional()
   @IsString()
   weather1: string;
 
-  @IsString()
+
   @IsOptional()
+  @IsString()
   weather2?: string;
 
+  @IsOptional()
   @IsInt()
   statTotal: number;
 
+  @IsOptional()
   @IsInt()
   atk: number;
 
+  @IsOptional()
   @IsInt()
   def: number;
 
+  @IsOptional()
   @IsInt()
   sta: number;
 
-  @IsInt()
   @IsOptional()
+  @IsInt()
   legendary?: number;
 
-  @IsInt()
   @IsOptional()
+  @IsInt()
   aquireable?: number;
 
-  @IsInt()
   @IsOptional()
+  @IsInt()
   spawns?: number;
 
-  @IsInt()
   @IsOptional()
+  @IsInt()
   regional?: number;
 
-  @IsInt()
   @IsOptional()
+  @IsInt()
   raidable?: number;
 
-  @IsInt()
   @IsOptional()
+  @IsInt()
   hatchable?: number;
 
-  @IsInt()
   @IsOptional()
+  @IsInt()
   shiny?: number;
 
-  @IsInt()
   @IsOptional()
+  @IsInt()
   nest?: number;
 
-  @IsInt()
   @IsOptional()
+  @IsInt()
   new?: number;
 
-  @IsInt()
   @IsOptional()
+  @IsInt()
   notGettable?: number;
 
-  @IsInt()
   @IsOptional()
+  @IsInt()
   futureEvolve?: number;
 
+  @IsOptional()
   @IsInt()
   cp40: number;
 
+  @IsOptional()
   @IsInt()
   cp39: number;
 }
