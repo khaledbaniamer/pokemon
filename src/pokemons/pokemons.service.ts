@@ -1,9 +1,9 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/database/prisma.service';
 import { CreatePokemonDto } from './dto/createPokemon.dto';
 import { UpdatePokemonDto } from './dto/updatePokemon.dto';
 import { Pokemon, Prisma } from '@prisma/client';
 import { FilterPokemonType } from './dto/filterPokemon.dto';
+import { PrismaService } from '../database/prisma.service';
 
 @Injectable()
 export class PokemonsService {
@@ -23,7 +23,7 @@ export class PokemonsService {
     return this.isPokemonExist(pokemonId);
   }
   async createPokemon(pokemonData: CreatePokemonDto): Promise<Pokemon> {
-    return this.prisma.pokemon.create({ data: pokemonData });
+    return await this.prisma.pokemon.create({ data: pokemonData });
   }
   async updatePokemon(
     pokemonId: number,
@@ -54,8 +54,6 @@ export class PokemonsService {
     for (let row = 1; row < file[0].data.length; row++) {
       let obj = {};
       for (let col = 0; col < headers.length; col++) {
-        // test.push(headers[col])
-        // test.push(file[0].data[row][col])
         const key = headers[col];
         let value = file[0].data[row][col];
         if (key == 'imgName') {
@@ -72,8 +70,6 @@ export class PokemonsService {
       test.push(obj);
     }
     await this.prisma.pokemon.createMany({ data: test });
-    // console.log(test)
-    // console.log(test.length)
   }
 
   private async isPokemonExist(id: number) {

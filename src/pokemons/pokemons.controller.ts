@@ -24,15 +24,12 @@ import { FilterPokemonDto } from './dto/filterPokemon.dto';
 export class PokemonsController {
   constructor(private readonly pokemonService: PokemonsService) {}
   @Get()
-  // @UsePipes(ValidationPipe)
   async getPokemons(@Query()
     filter: FilterPokemonDto,
   ) {
     let { page, pageCount, ...query } = filter;
     page = page ?? 1;
     pageCount = pageCount ? Number(pageCount): 10;
-    // console.log(this.pokemonService.findAllPokemons());
-    
     return this.pokemonService.findAllPokemons(page , pageCount , query);
   }
   @Get(':id')
