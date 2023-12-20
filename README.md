@@ -1,73 +1,139 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Documentation
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Overview
+Welcome to the  documentation of the Pokemon Go project. This project is about  CRUD (Create, Read, Update, Delete) application that manages a Pokemon database, that integration with nestjs to create endpoit api and manage data from backend side .
+Will descripe through this documentation about project structure, technologies used, and how to run the application.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Technologies Used
+-   **Node.js**: A runtime environment for executing JavaScript on the server.
+-   **NestJS**: A powerful and extensible framework for building server-side applications.
+-   **MySql**: A SQL database used for storing Pokemon data
+-   **Prisma**: An ORM (Object-Relational Mapping) tool for efficient database access.
+-   **class-transformer**: A library for transforming class objects.
+-   **class-validator**: A library for data validation.
+-   **node-xlsx**: A library for reading data from Excel files.
 
-## Description
+## Project Structure
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+#### Pokemons Folder
+-   Pokemon Files
+	- `pokemons.controller.spec`
+	- `pokemons.controller`
+	- `pokemons.module`
+	- `pokemons.service`
+-   Handles Pokemon-related operations 
+-   Endpoints:
+    -   `GET /pokemons`: Retrieves Pokemon data with optional filtering.
+    -   `GET /pokemons/:id`: Retrieves a Pokemon by ID.
+    -   `POST /pokemons`: Creates a new Pokemon.
+    -   `PUT /pokemons/:id`: Updates Pokemon information.
+    -   `DELETE /pokemons/:id`: Deletes a Pokemon (Admin role required).
+    -    `POST /pokemons/upload`: Imports Pokemon data from an Excel file.
+
+  ## Clone
+
+  
+
+```bash
+
+$  git clone <github repo url>
+
+```
+```bash
+
+$  cd <dir name > // ex: pokemon
+
+```
 
 ## Installation
 
+  
+
 ```bash
-$ npm install
+
+$  npm  install
+
 ```
+  ## .env
+```bash
+
+$  touch .env
+
+```
+```bash
+copy below var and past it inside .env file 
+
+DATABASE_USER=<your database username>
+
+DATABASE_NAME =<your database name>
+
+DATABASE_PORT = <your database port>
+
+DATABASE_PASSWORD=<your database password>
+
+DATABASE_HOST = <your database host>
+
+DATABASE_URL="mysql://${DATABASE_USER}:${DATABASE_PASSWORD}${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}"
+
+```
+  ## Prisma
+```bash
+$ npx  prisma  generate
+```
+
+  ## Prisma Migrate
+```bash
+$ npx prisma migrate dev --name init
+```
+
 
 ## Running the app
 
+  
+
 ```bash
+
 # development
-$ npm run start
+
+$  npm  run  start
+
+  
 
 # watch mode
-$ npm run start:dev
+
+$  npm  run  start:dev
+
+  
 
 # production mode
-$ npm run start:prod
+
+$  npm  run  start:prod
+
 ```
+
+  
 
 ## Test
 
+  
+
 ```bash
+
 # unit tests
-$ npm run test
+
+$  npm  run  test
+
+  
 
 # e2e tests
-$ npm run test:e2e
+
+$  npm  run  test:e2e
+
+  
 
 # test coverage
-$ npm run test:cov
+
+$  npm  run  test:cov
+
 ```
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
